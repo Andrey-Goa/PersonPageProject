@@ -1,0 +1,11 @@
+.center{
+	width:400px;
+	height:200px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-100px 0 0 -200px;
+}
+.text-xs-center{
+	text-align: center;
+}

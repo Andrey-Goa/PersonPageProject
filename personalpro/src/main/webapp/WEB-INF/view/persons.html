@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="/resources/static/css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+    <title>Persons</title>
+</head>
+<body>
+<div id="content">
+
+    <button class="btn btn-primary createbutton" data-toggle="modal">Добавить</button>
+    <button class="btn btn-success getbutton">Получить</button>
+    <button class="btn btn-info changebutton">Обработать</button>
+    <button class="btn btn-warning" onclick="return showpage()">Заполнить таблицу</button>
+<table class="table table-bordered table-hover">
+    <thead class="thead-inverse">
+    <tr>
+
+        <th></th>
+        <th>ID</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Дата рождения</th>
+        <th>Комментарий</th>
+        <th>Дата обновления</th>
+        <th>Удалить</th>
+        <th>Изменить</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="per : ${persons}">
+        <td><label class="custom-control custom-checkbox">
+            <input type="checkbox" th:value="${per.id}" class="custom-control-input"/>
+            <span class="custom-control-indicator"></span>
+        </label></td>
+        <td th:text="${{per.id}}"></td>
+        <td class="ln" th:text="${{per.last_name}}"></td>
+        <td th:text="${{per.first_name}}"></td>
+        <td th:text="${{per.middle_name}}"></td>
+        <td th:text="${{per.birth_date}}"></td>
+        <td th:text="${{per.comment}}"></td>
+        <td th:text="${{per.update_date}}"></td>
+        <td><button class="btn btn-danger delbutton"  th:value="${per.id}">Удалить</button></td>
+        <td><button class="btn btn-primary editbutton"  th:value="${per.id}">Обновить</button></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="send-form" id="send-form" autocomplete=""  method="POST">
+                    ID:<br/>
+                    <input  type="text" class ="form-control"  placeholder="ID "  name="id" id="id"/><br/>
+                    <div class="dang text-xs-center" id="id_er">
+                    </div>
+                    <div class="hideform">
+                    Фамилия<br/>
+                    <input type="text"  class ="nr form-control" required="required" placeholder="Фамилия" name="last_name" id="last_name"/> <br/>
+                        <div class=" dang text-xs-center"  id="last_er">
+                        </div>
+                    Имя:<br/>
+                    <input type="text" class ="nr form-control"  required="required" placeholder="Имя" name="first_name" id="first_name"/><br/>
+                        <div class="dang text-xs-center" id="first_er">
+                        </div>
+                    Отчество:<br/>
+                     <input type="text" class ="nr form-control" required="required" placeholder="Отчество" name="middle_name" id="middle_name"/><br/>
+                        <div class="dang text-xs-center" id="middle_er">
+                        </div>
+                        Дата рождения: <br/>
+                    <input type="text" class ="nr form-control" required="required" placeholder="ДД.ММ.ГГГГ" name="birth_date" id="birth_date"/>
+                        <div class="dang text-xs-center" id="birth_er">
+                        </div>
+                    </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="submit" id="sub"  class="btn btn-primary">Сохранить изменения</button>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/resources/static/js/ajax.js"></script>
+</body>
+</html>

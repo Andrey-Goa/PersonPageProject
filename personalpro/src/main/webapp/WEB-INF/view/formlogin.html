@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="/resources/static/css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+
+    <title>Login</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="center">
+    <h2 class="text-xs-center">Login</h2>
+
+                        <form action="/j_spring_security_check" method='POST'>
+                            <div class="form-group  row">
+                                <label class="sr-only control-label">Login</label>
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <input type="text" class="form-control" name="j_username" placeholder="login" required=""/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="sr-only control-label">Password</label>
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <input type="password" class="form-control" name="j_password" placeholder="password" required=""/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-offset-2 col-sm-8 p-b-3 p-t-2">
+                                    <button type="submit" class="btn btn-secondary-outline btn-lg btn-block">Войти</button>
+                                </div>
+                            </div>
+                        </form>
+        <div class="alert alert-danger text-xs-center" th:if="${param.error}">
+            Invalid username and password.
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,3 +1,3 @@
 # PersonPageProject
 Тестовое задание
-Spring MVC, jQuery Ajax
+Spring MVC, Spring Data, jQuery Ajax
